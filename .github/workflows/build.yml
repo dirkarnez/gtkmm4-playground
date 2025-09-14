@@ -52,20 +52,10 @@ jobs:
             mingw-w64-${{matrix.env}}-pkg-config
             base-devel
             
-
-
-
-
-
-
-
-
-
-
             
       - run: |
           mkdir -pv "${{ env.installation_path }}" && \
-          g++ -std=c++17 $(pkg-config gtkmm-4.0 --cflags --libs | sed 's/ -I/ -isystem /g') -o ./${{ env.installation_path }}/hello-world-gtkmm.exe main.cpp
+          g++ -std=c++17 $(pkg-config --cflags --libs libsigc++-3.0 gtk4 gtkmm-4.0) -o ./${{ env.installation_path }}/hello-world-gtkmm.exe main.cpp
           
       - run: |
           ls -R
