@@ -1,4 +1,4 @@
-name: msys2-gtk4-action-workflow
+name: msys2-gtkmm4-action-workflow
 on:
   push:
     # Sequence of patterns matched against refs/tags
@@ -33,8 +33,8 @@ jobs:
           update: true
           install: >-
             curl
-            git     
-            mingw-w64-${{matrix.env}}-gtk4
+            git
+            mingw-w64-${{matrix.env}}-gtkmm-4.0
             mingw-w64-${{matrix.env}}-gcc
             mingw-w64-${{matrix.env}}-toolchain
             mingw-w64-${{matrix.env}}-openssl
@@ -44,8 +44,8 @@ jobs:
             
       - run: |
           mkdir -pv "${{ env.installation_path }}" && \
-          gcc $(pkg-config --cflags gtk4) -o ./${{ env.installation_path }}/hello-world-gtk.exe main.c $(pkg-config --libs gtk4)
-
+          g++ -std=c++11 $(pkg-config gtkmm-4.0 --cflags --libs | sed 's/ -I/ -isystem /g') -o ./${{ env.installation_path }}/hello-world-gtkmm.exe main.cpp
+          
       - run: |
           ls -R
 
@@ -66,7 +66,7 @@ jobs:
           }
     
           # Copy all of the binary's dependencies to the result directory.
-          copyDLLs "$out/hello-world-gtk.exe"
+          copyDLLs "$out/hello-world-gtkmm.exe"
     
           # countDLLs returns the number of DLLs in the result directory.
           # We use this to recursively copy dependencies until no new DLLs are
