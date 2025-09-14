@@ -34,13 +34,34 @@ jobs:
           install: >-
             curl
             git
+            mingw-w64-${{matrix.env}}-gtk4
             mingw-w64-${{matrix.env}}-gtkmm-4.0
+            mingw-w64-${{matrix.env}}-glibmm-2.68
+            mingw-w64-${{matrix.env}}-cairomm-1.16
+            mingw-w64-${{matrix.env}}-pangomm-2.48
+            mingw-w64-${{matrix.env}}-glib2
+            mingw-w64-${{matrix.env}}-pango
+            mingw-w64-${{matrix.env}}-cairo
+            mingw-w64-${{matrix.env}}-libsigc++-3.0
+            mingw-w64-${{matrix.env}}-gdk-pixbuf2
+            mingw-w64-${{matrix.env}}-graphene
             mingw-w64-${{matrix.env}}-gcc
             mingw-w64-${{matrix.env}}-toolchain
             mingw-w64-${{matrix.env}}-openssl
             mingw-w64-${{matrix.env}}-ca-certificates
             mingw-w64-${{matrix.env}}-pkg-config
             base-devel
+            
+
+
+
+
+
+
+
+
+
+
             
       - run: |
           mkdir -pv "${{ env.installation_path }}" && \
