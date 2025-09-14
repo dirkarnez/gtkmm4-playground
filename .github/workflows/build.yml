@@ -44,7 +44,7 @@ jobs:
             
       - run: |
           mkdir -pv "${{ env.installation_path }}" && \
-          g++ -std=c++11 $(pkg-config gtkmm-4.0 --cflags --libs | sed 's/ -I/ -isystem /g') -o ./${{ env.installation_path }}/hello-world-gtkmm.exe main.cpp
+          g++ -std=c++14 $(pkg-config gtkmm-4.0 --cflags --libs | sed 's/ -I/ -isystem /g') -o ./${{ env.installation_path }}/hello-world-gtkmm.exe main.cpp
           
       - run: |
           ls -R
